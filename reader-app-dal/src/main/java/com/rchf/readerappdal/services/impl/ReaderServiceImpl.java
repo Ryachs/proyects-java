@@ -17,17 +17,17 @@ public class ReaderServiceImpl implements ReaderService {
 
     @Override
     public Reader saveReader(Reader reader) {
-        return null;
+        return readerRepository.save(reader);
     }
 
     @Override
     public Reader saveGender(Reader reader) {
-        return null;
+        return readerRepository.save(reader);
     }
 
     @Override
     public Reader updateGender(Reader reader) {
-        return null;
+        return readerRepository.save(reader);
     }
 
     @Override
@@ -37,7 +37,8 @@ public class ReaderServiceImpl implements ReaderService {
 
     @Override
     public List<Reader> getReaderList() {
-        return null;
+        List<Reader> readerList = (List<Reader>) readerRepository.findAll();
+        return readerList;
     }
 
     @Override
