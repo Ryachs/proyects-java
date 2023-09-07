@@ -1,10 +1,12 @@
 package com.rchf.readerappdal.controllers;
 
+import com.rchf.readerappdal.entities.Gender;
 import com.rchf.readerappdal.entities.Reader;
 import com.rchf.readerappdal.services.ReaderService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -14,33 +16,46 @@ public class ReaderControllers {
     @Autowired
     private ReaderService readerService;
 
-    public ResponseEntity<Reader>saveReader() {
-        return null;
+    @PostMapping()
+    public ResponseEntity<Reader>saveReader(@RequestBody Reader reader) {
+        readerService.saveReader(reader);
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-    public ResponseEntity<Reader>saveGender() {
-        return null;
+    @PostMapping
+    public ResponseEntity<Reader>saveGender(@RequestBody Reader reader) {
+        readerService.saveGender(reader);
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-    public ResponseEntity<Reader>UpdateGender() {
-        return null;
+    @PutMapping()
+    public ResponseEntity<Reader>UpdateGender(@RequestBody Reader reader) {
+        Reader readers = readerService.updateGender(reader);
+        return new ResponseEntity<>(readers, HttpStatus.OK);
     }
 
-    public ResponseEntity<Void>deleteReader() {
-        return null;
+    @DeleteMapping()
+    public ResponseEntity<Void>deleteReader(@PathVariable("id") Long id) {
+        readerService.deleteReader(id);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
+    @GetMapping()
     public ResponseEntity<List<Reader>>getReaderList() {
-        return null;
+        List<Reader> readerList = readerService.getReaderList();
+        return readerList != null ? new ResponseEntity<>(readerList, HttpStatus.OK) : new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    public ResponseEntity<List<Reader>>getGenderList() {
-        return null;
+    @GetMapping()
+    public ResponseEntity<List<Gender>>getGenderList() {
+        List<Gender> genderList = readerService.getGenderList();
+        return genderList != null ? new ResponseEntity<>(genderList, HttpStatus.OK) : new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    public ResponseEntity<List<Reader>>getGenderListByReader() {
-        return null;
+    @GetMapping()
+    public ResponseEntity<List<Reader>>getGenderListByReader(@PathVariable("name") String name) {
+        List<Reader> readers = readerService.getGenderListByReader(name);
+        return readers != null ? new ResponseEntity<>(readers, HttpStatus.OK) : new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
-
 
 }

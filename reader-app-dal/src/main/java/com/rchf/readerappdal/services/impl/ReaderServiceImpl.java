@@ -1,5 +1,6 @@
 package com.rchf.readerappdal.services.impl;
 
+import com.rchf.readerappdal.entities.Gender;
 import com.rchf.readerappdal.entities.Reader;
 import com.rchf.readerappdal.repositories.ReaderRepository;
 import com.rchf.readerappdal.services.ReaderService;
@@ -25,7 +26,7 @@ public class ReaderServiceImpl implements ReaderService {
     }
 
     @Override
-    public Reader UpdateGender(Reader reader) {
+    public Reader updateGender(Reader reader) {
         return null;
     }
 
@@ -40,7 +41,7 @@ public class ReaderServiceImpl implements ReaderService {
     }
 
     @Override
-    public List<Reader> getGenderList() {
+    public List<Gender> getGenderList() {
         return null;
     }
 
